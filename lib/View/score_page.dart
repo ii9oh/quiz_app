@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:q_a/generated/l10n.dart';
 
 import '../config/colors.dart';
 import '../domain/controller/qa_controller.dart';
@@ -35,7 +36,7 @@ class ScorePage extends ConsumerWidget {
               Column(
                 children: [
                   Text(
-                    " ${QaState.username.text} your score is",
+                    " ${QaState.username.text} ${S.of(context).yourScore}",
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 30,
@@ -71,7 +72,7 @@ class ScorePage extends ConsumerWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(2)))),
                         child: Text(
-                          "Play Again",
+                          S.of(context).playAgain,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Poppins',

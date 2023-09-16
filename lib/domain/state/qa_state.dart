@@ -14,7 +14,7 @@ class QaState {
   final bool questionEnd;
   final bool answerSelected;
   final QaStatus status;
-  final GlobalKey<FormState> key;
+
   QaState({
     required this.username,
     required this.score,
@@ -26,7 +26,6 @@ class QaState {
     required this.questionEnd,
     required this.answerSelected,
     required this.status,
-    required this.key,
   });
 
   factory QaState.Initial() => QaState(
@@ -40,7 +39,6 @@ class QaState {
         questionEnd: false,
         answerSelected: false,
         status: QaStatus.init,
-        key: GlobalKey<FormState>(),
       );
 
   QaState copyWith({
@@ -54,7 +52,6 @@ class QaState {
     bool? questionEnd,
     bool? answerSelected,
     QaStatus? status,
-    GlobalKey<FormState>? key,
   }) {
     return QaState(
       username: username ?? this.username,
@@ -67,7 +64,6 @@ class QaState {
       questionEnd: questionEnd ?? this.questionEnd,
       answerSelected: answerSelected ?? this.answerSelected,
       status: status ?? this.status,
-      key: key ?? this.key,
     );
   }
 }

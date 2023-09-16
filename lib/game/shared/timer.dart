@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:q_a/config/colors.dart';
+import 'package:q_a/generated/l10n.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 class Timer extends StatelessWidget {
@@ -16,24 +17,27 @@ class Timer extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
-          width: 72,
-          child: SlideCountdown(
-            duration: Duration(minutes: 5),
-            separator: "-",
-            onDone: () => Navigator.pushNamed(context, "/Score"),
-            decoration: const BoxDecoration(
-              color: Colors.white,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            width: 80,
+            child: SlideCountdown(
+              duration: const Duration(minutes: 5),
+              separator: "-",
+              onDone: () => Navigator.pushNamed(context, "/Score"),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              textStyle: const TextStyle(color: Colors.black),
             ),
-            textStyle: TextStyle(color: Colors.black),
           ),
         ),
-        const Text(
-          "Countdown",
-          style: TextStyle(fontFamily: 'Poppins-Med', fontSize: 8),
+        Text(
+          S.of(context).countdown,
+          style: const TextStyle(fontFamily: 'Poppins-Med', fontSize: 10),
         ),
         const SizedBox(
-          height: 27,
+          height: 30,
         ),
         // Question
         Column(
@@ -41,13 +45,14 @@ class Timer extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  padding: S.isArabic()
+                      ? EdgeInsets.symmetric(vertical: 5)
+                      : EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: SizedBox(
                     height: 17,
                     width: 80,
                     child: Text(
-                      "Question - ",
+                      S.of(context).question,
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Poppnins',

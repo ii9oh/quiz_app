@@ -10,6 +10,8 @@ import 'package:q_a/game/shared/progress_bar.dart';
 import 'package:q_a/game/shared/question_button.dart';
 import 'package:q_a/game/shared/timer.dart';
 
+import '../generated/l10n.dart';
+
 class GamePage extends ConsumerStatefulWidget {
   const GamePage({super.key});
 
@@ -54,7 +56,9 @@ class _GamePageState extends ConsumerState<GamePage> {
                     // Timer
                     Timer(
                       questionNumber: qaState.questionNumber.toString(),
-                      questionText: list[qaState.questionIndex].question,
+                      questionText: qaState.questionEnd
+                          ? ""
+                          : list[qaState.questionIndex].question,
                     ),
 
                     SizedBox(
@@ -114,12 +118,17 @@ class _GamePageState extends ConsumerState<GamePage> {
                       onPressed: () {
                         if (!qaState.answerSelected) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Choose Answer Please!")));
+                            SnackBar(
+                              content: Text(S.of(context).chooseAnswer),
+                            ),
+                          );
                           return;
                         }
                         qaNotifier.nextQuestion(context);
                       },
-                      text: qaState.questionEnd ? "See Score" : "NEXT QUESTION",
+                      text: qaState.questionEnd
+                          ? S.of(context).seeScore
+                          : S.of(context).nextQuestion,
                     ),
                   ],
                 ),

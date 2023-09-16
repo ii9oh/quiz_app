@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:q_a/generated/l10n.dart';
 
 SizedBox playerName({
   required TextEditingController username,
-  required GlobalKey<FormState> key,
+  required Key key,
+  BuildContext? context,
 }) =>
     SizedBox(
       height: 33,
@@ -13,7 +15,9 @@ SizedBox playerName({
           // ignore: sort_child_properties_last
           child: TextFormField(
             validator: (value) {
-              if (value == null || value.isEmpty) return 'Enter your name';
+              if (value == null || value.isEmpty) {
+                return S.of(context!).username;
+              }
               return null;
             },
             controller: username,

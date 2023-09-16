@@ -1,0 +1,11 @@
+{
+    "username" : "Enter your name",
+    "play" : "play",
+    "chooseAnswer" : "Choose Answer Please!",
+    "seeScore" : "see score",
+    "nextQuestion" : "NEXT QUESTION",
+    "countdown" : "Countdown",
+    "question" : "Question - ",
+    "yourScore" : "your score is",
+    "playAgain" : "Play Again"
+}
