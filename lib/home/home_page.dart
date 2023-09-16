@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:q_a/generated/l10n.dart';
 import 'package:q_a/home/shared/play_button.dart';
 import 'package:q_a/home/shared/player_name.dart';
 import 'package:q_a/domain/controller/qa_controller.dart';
@@ -13,6 +14,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final qaState = ref.watch(QaProvider);
     final qaNotifier = ref.read(QaProvider.notifier);
+    final key = GlobalKey<FormState>();
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -33,7 +35,7 @@ class HomePage extends ConsumerWidget {
                   height: 15,
                   width: 132,
                   child: Text(
-                    "Enter your name",
+                    S.of(context).username,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -45,16 +47,22 @@ class HomePage extends ConsumerWidget {
                 SizedBox(
                   height: 8,
                 ),
-                playerName(username: qaState.username, key: qaState.key),
+                playerName(
+                  username: qaState.username,
+                  key: key,
+                ),
                 SizedBox(
                   height: 67,
                 ),
-                playButton(onPressed: () {
-                  if (qaState.key.currentState!.validate()) {
-                    qaState.key.currentState!.save();
-                    qaNotifier.startGame(context);
-                  }
-                }),
+                playButton(
+                  onPressed: () {
+                    if (key.currentState!.validate()) {
+                      key.currentState!.save();
+                      qaNotifier.startGame(context);
+                    }
+                  },
+                  text: S.of(context).play,
+                ),
               ],
             )
           ],
